@@ -27,7 +27,7 @@ if Meteor.isClient
     val =  $('#scale').val()
     val =  if val<1 then (0.5 + val/2) else (1 + (val-1)*0.5)
     updateQueryStringParameter('scaleFactor',val)
-    $('#thevideo').css({'transform': "scaleX(#{val})"})
+    $('#thevideo').css({'transform': "scaleX(#{val})", '-webkit-transform': "scaleX(#{val})"})
 
   updateForVideoUrl = ()->
     val = $('#videourl').val()

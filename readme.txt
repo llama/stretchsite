@@ -16,7 +16,7 @@ https://twitter.com/search?q=youtube+wrong+aspect
 
 https://webapps.stackexchange.com/questions/17848/can-i-change-the-aspect-ratio-of-a-youtube-video-im-viewing
 post to these:
-{http://forums.xkcd.com/viewtopic.php?f=20&t=82494}
+http://forums.xkcd.com/viewtopic.php?f=20&t=82494
 http://alicious.com/youtube-aspect-ratio-wrong/ (comments section)
 
 
