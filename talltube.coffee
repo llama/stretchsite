@@ -3,8 +3,10 @@ if Meteor.isClient
   Meteor.startup ()->
     vurl = getParameterByName('videoUrl')
     scale = getParameterByName('scaleFactor')
-    $('#videourl').val(vurl) if vurl
-    updateForVideoUrl()
+    
+    if vurl
+      $('#videourl').val(vurl)
+      updateForVideoUrl()
 
     if scale
       v = if scale<1 then (scale-0.5)*2 else ((scale-1)*2)+1
