@@ -14,10 +14,9 @@ meteor deploy stretch.site
 reply to these guys:
 https://twitter.com/search?q=youtube+wrong+aspect
 
-post to these:
 https://webapps.stackexchange.com/questions/17848/can-i-change-the-aspect-ratio-of-a-youtube-video-im-viewing
-https://productforums.google.com/forum/#!topic/youtube/3ZPtjz9TQRY
-http://forums.xkcd.com/viewtopic.php?f=20&t=82494
+post to these:
+{http://forums.xkcd.com/viewtopic.php?f=20&t=82494}
 http://alicious.com/youtube-aspect-ratio-wrong/ (comments section)
 
 

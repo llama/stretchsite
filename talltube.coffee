@@ -35,7 +35,7 @@ if Meteor.isClient
     myId = getId(val)
     $('iframe').attr('src','//www.youtube.com/embed/' + myId + '?autoplay=1')
 
-  Template.hello.events 
+  Template.main.events 
     'input #scale': updateForRange
 
     'input #videourl': updateForVideoUrl
