@@ -1,5 +1,16 @@
 if Meteor.isClient
 
+  Meteor.startup ()->
+    vurl = getParameterByName('videoUrl')
+    scale = getParameterByName('scaleFactor')
+    $('#videourl').val(vurl) if vurl
+    updateForVideoUrl()
+
+    if scale
+      v = if scale<1 then (scale-0.5)*2 else ((scale-1)*2)+1
+      $('#scale').val(v)
+      updateForRange()
+
 
 
   getId = (url) ->
@@ -13,16 +24,19 @@ if Meteor.isClient
   updateForRange = ()->
     val =  $('#scale').val()
     val =  if val<1 then (0.5 + val/2) else (1 + (val-1)*0.5)
-    console.log val
+    updateQueryStringParameter('scaleFactor',val)
     $('#thevideo').css({'transform': "scaleX(#{val})"})
+
+  updateForVideoUrl = ()->
+    val = $('#videourl').val()
+    updateQueryStringParameter('videoUrl',val)
+    myId = getId(val)
+    $('iframe').attr('src','//www.youtube.com/embed/' + myId + '?autoplay=1')
 
   Template.hello.events 
     'input #scale': updateForRange
 
-    'input #videourl': ->
-      val = $('#videourl').val()
-      myId = getId(val)
-      $('iframe').attr('src','//www.youtube.com/embed/' + myId + '?autoplay=1')
+    'input #videourl': updateForVideoUrl
 
     'click button': (b)->
       v = $(b.currentTarget).data('scale')
