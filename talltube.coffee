@@ -23,10 +23,12 @@ if Meteor.isClient
     else
       'error'
 
+  updateVideoTimeout = null
   updateForRange = ()->
     val =  $('#scale').val()
     val =  if val<1 then (0.5 + val/2) else (1 + (val-1)*0.5)
-    updateQueryStringParameter('scaleFactor',val.toFixed(3))
+    clearTimeout(updateVideoTimeout)
+    updateVideoTimeout = setTimeout (()-> updateQueryStringParameter('scaleFactor',val.toFixed(3))), 100
     $('#thevideo').css({'transform': "scaleX(#{val})", '-webkit-transform': "scaleX(#{val})"})
 
   updateForVideoUrl = ()->
