@@ -1,5 +1,6 @@
 
 MAX_SCALE_FACTOR = 4
+FADE_OUT_AFTER_MILLISECONDS = 5*1000
 
 sliderForScaleFactor = (scaleFactor) ->
   return Math.log(scaleFactor) / Math.log(MAX_SCALE_FACTOR)
@@ -8,12 +9,27 @@ scaleFactorForSlider = (sliderVal) ->
   return Math.pow(MAX_SCALE_FACTOR, sliderVal)
 
 if Meteor.isClient
+  @fadeTimeout = null
+
+  resetFade = ()->
+    clearTimeout(window.fadeTimeout)
+    $('.content').stop(true)
+    $('.content').animate({opacity:1},50)
+    window.fadeTimeout = setTimeout ()->
+      if $('#videourl').val()
+        $('.content').animate({opacity:0},1000)
+      else
+        resetFade()
+    , FADE_OUT_AFTER_MILLISECONDS
 
   Meteor.startup ()->
     vurl = getParameterByName('videoUrl')
     scale = getParameterByName('scaleFactor')
     zoom = getParameterByName('zoomFactor')
-    
+
+    resetFade()
+    $(window).focus resetFade
+
     if vurl
       $('#videourl').val(vurl)
       updateForVideoUrl()
@@ -44,7 +60,7 @@ if Meteor.isClient
 
     clearTimeout(updateVideoTimeout)
     if changeUrl
-      updateVideoTimeout = setTimeout (()-> 
+      updateVideoTimeout = setTimeout (()->
         updateQueryStringParameter('scaleFactor',scale.toFixed(3))
         updateQueryStringParameter('zoomFactor',zoom.toFixed(3))), 300
 
@@ -59,9 +75,11 @@ if Meteor.isClient
     myId = getId(val)
     $('iframe').attr('src','//www.youtube.com/embed/' + myId + '?autoplay=1')
 
-  Template.main.events 
+  Template.main.events
     'input #scale, input #zoom': updateForRange
 
+    'mousemove': resetFade
+    'focus': resetFade
     'input #videourl': updateForVideoUrl
 
     'click button': (b)->
