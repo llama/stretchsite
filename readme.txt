@@ -5,8 +5,7 @@ meteor deploy stretch.site
 
 
 # TODO
-
--store all state in URL
+-come up with better way to get video exactly fullscreen (figure out how to float controls above video)
 
 
 # MARKETING
