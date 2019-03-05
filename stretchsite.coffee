@@ -73,6 +73,7 @@ if Meteor.isClient
     val = $('#videourl').val()
     updateQueryStringParameter('videoUrl',val)
     myId = getId(val)
+    $('#ad').hide()
     $('iframe').attr('src','//www.youtube.com/embed/' + myId + '?autoplay=1')
 
   Template.main.events
