@@ -6,7 +6,7 @@
  */
 
 const MAX_SCALE_FACTOR = 4;
-const FADE_OUT_AFTER_MILLISECONDS = 5*1000;
+const FADE_OUT_AFTER_MILLISECONDS = 3*1000;
 
 const sliderForScaleFactor = scaleFactor => Math.log(scaleFactor) / Math.log(MAX_SCALE_FACTOR);
 
