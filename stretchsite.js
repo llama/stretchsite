@@ -55,6 +55,7 @@ if (Meteor.isClient) {
   }
 
 
+  // keypress would be better so we get repeating, but it doesnt work for arrow keys for some odd reason
   $('body').keyup(function(event) {
     console.log(event.key);
     switch (event.key) {
